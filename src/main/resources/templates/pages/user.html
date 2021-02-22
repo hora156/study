@@ -36,7 +36,7 @@
 
         <section class="content">
 
-            <!--<div class="row">
+            <div class="row">
                 <div class="col-xs-12">
                     <div class="box box-danger">
                         <div class="box-header with-border">
@@ -68,8 +68,10 @@
                         </div>
                     </div>
                 </div>
-            </div>--><!-- row end-->
+            </div><!-- row end-->
+<script>
 
+</script>
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box">
@@ -84,10 +86,9 @@
                                     <div class="col-sm-6"></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-12" id="clickClass">
                                         <table id="example2" class="table table-bordered table-hover dataTable"
                                                role="grid" aria-describedby="example2_info">
-
                                             <thead>
                                             <tr role="row">
                                                 <th class="text-center bg-light-blue-gradient" tabindex="0" rowspan="1" colspan="1">
@@ -114,19 +115,23 @@
                                             </tr>
                                             </thead>
                                             <tbody id="itemList">
-                                            <tr role="row" class="odd" v-for="dto in itemList">
-                                                <td class="text-center">{{dto.id}}</td>
+                                            <tr role="row" class="odd" v-for="dto in itemList" v-on:click="clickBtn(dto.id)" v-bind:key="dto.id">
+                                                    <td class="text-center">{{dto.id}}</td>
                                                 <td class="text-center">{{dto.account}}</td>
-                                                <td class="text-center">{{dto.status}}</td>
-                                                <td class="text-center">{{dto.email}}</td>
-                                                <td class="text-center">{{dto.phone_number}}</td>
-                                                <td class="text-center">{{dto.registered_at}}</td>
-                                                <td class="text-center">{{dto.unregistered_at}}</td>
+                                                    <td class="text-center">{{dto.status}}</td>
+                                                    <td class="text-center">{{dto.email}}</td>
+                                                    <td class="text-center">{{dto.phone_number}}</td>
+                                                    <td class="text-center">{{dto.registered_at}}</td>
+                                                    <td class="text-center">{{dto.unregistered_at}}</td>
                                             </tr>
+                                            <div id="userDetail">
+                                                <my-detailUser></my-detailUser>
+                                            </div>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-sm-5">
                                         <div id="showPage" class="dataTables_info" role="status" aria-live="polite">

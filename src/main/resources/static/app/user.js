@@ -26,6 +26,30 @@
         el : '#itemList',
         data : {
             itemList : {}
+        },
+        methods: {
+            clickBtn : function (id) {
+                detailUser(id);
+            }
+        }
+    });
+
+
+    // 유저 상세 정보
+    var userDetail = new Vue({
+        el : '#userDetail',
+        data : function (){
+            return userDetail;
+        }
+    });
+
+    Vue.component('my-detailUser', {
+        template: '<tr role="row" class="odd" v-for="detail in userDetail">\n' +
+            '<td class="text-center">{{detail.id}}</td>\n' +
+            '<td class="text-center">{{detail.order_group_api_response_list}}</td>\n' +
+            '</tr>',
+        data: function (){
+            return userDetail;
         }
     });
 
@@ -61,14 +85,29 @@
         }
     });
 
-
     $('#search').click(function () {
+        console.log("search!!")
         searchStart(0)
     });
+
+
 
     $(document).ready(function () {
         searchStart(0)
     });
+
+
+    function detailUser(index) {
+        console.log("call userId : " + index);
+        $.get("/api/user/"+index+"/orderInfo", function (response) {
+
+            userDetail.userDetail = response.data;
+
+            console.log(userDetail.userDetail);
+
+        });
+    }
+
     
     function searchStart(index) {
         console.log("call index : "+index);

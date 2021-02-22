@@ -12,6 +12,7 @@ import com.example.study.model.network.response.OrderGroupApiResponse;
 import com.example.study.model.network.response.UserApiResponse;
 import com.example.study.model.network.response.UserOrderInfoApiResponse;
 import com.example.study.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +23,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResponse, User> {
 
@@ -147,7 +149,7 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
     public Header<List<UserApiResponse>> search(Pageable pageable) {
 
         Page<User> users = baseRepository.findAll(pageable);
-
+        log.info("{}, {}", "User : ", users);
         List<UserApiResponse> userApiResponseList = users.stream()
                 .map(user -> response(user))
                 .collect(Collectors.toList());
